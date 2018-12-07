@@ -63,7 +63,7 @@ func main() {
 		for ; len(readyTasks) > 0 && working < len(workersTimeLeftOnTask); {
 			temp := make([]rune, len(readyTasks))
 			copy(temp, readyTasks)
-			sort.Sort(runes(temp))
+			sort.Sort(utils.Runes(temp))
 			x := temp[0]
 			for i := 0; i < len(readyTasks); i++ {
 				if readyTasks[i] == x {
@@ -91,17 +91,4 @@ func main() {
 	}
 	
 	fmt.Println(t-1)
-}
-
-type runes []rune
-
-func (s runes) Len() int {
-	return len(s)
-}
-
-func (s runes) Swap(i, j int) {
-	s[i], s[j] = s[j], s[i]
-}
-func (s runes) Less(i, j int) bool {
-	return s[i] < s[j]
 }
