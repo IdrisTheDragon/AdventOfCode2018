@@ -1,14 +1,17 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	"math"
+	"os"
 	"strconv"
 
 	"github.com/IdrisTheDragon/AdventOfCode2018/utils"
 )
 
 func main() {
+	downscaleX, downscaleY := 8,3
+
 	lines := utils.GetLines("../myInput.txt")
 
 	x := make([]int, len(lines))
@@ -39,33 +42,44 @@ func main() {
 		}
 	}
 
-	grid := make([][]int, bigX+1)
-	for i := range grid {
-		grid[i] = make([]int, bigY+1)
-	}
-	region := 0
+	f, err := os.Create("../out.txt")
+	check(err)
+	defer f.Close()
+
 	for i := 0; i < bigX+1; i++ {
 		for j := 0; j < bigY+1; j++ {
-			s := sum(i, j, x, y)
-			//fmt.Println(c)
-			grid[i][j] = s
-			if s < 10000 {
-				region++
+			c := closest(i, j, x, y)
+			if i%downscaleX == 0 && j%downscaleY == 0 {
+				_, err := f.WriteString(string(c + 65))
+				check(err)
 			}
 		}
+		if i%downscaleX == 0 {
+			_, err := f.WriteString("\n")
+			check(err)
+		}
 	}
-
-	fmt.Println(region)
 }
 
-func sum(x, y int, x1, y1 []int) int {
-	distance := 0
-	for n, _ := range y1 {
+func closest(x, y int, x1, y1 []int) int {
+	closest, distance := 0, math.MaxInt32
+	equal := false
+	for n := range y1 {
 		man := manhattanDistance(x, y, x1[n], y1[n])
 		//fmt.Println(x,y,":",x1[n],y1[n],"",man)
-		distance = distance + man
+		if man < distance {
+			distance = man
+			closest = n
+			equal = false
+		} else if man == distance {
+			equal = true
+		}
 	}
-	return distance
+	if equal {
+		return -1
+	} else {
+		return closest
+	}
 }
 
 func manhattanDistance(x1, y1, x2, y2 int) int {
@@ -77,4 +91,10 @@ func abs(n int) int {
 		return -n
 	}
 	return n
+}
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
 }

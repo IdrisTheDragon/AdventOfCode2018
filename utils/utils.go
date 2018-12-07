@@ -5,7 +5,17 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"strconv"
 )
+
+//Str2Int converts a string to an int and handles errors
+func Str2Int(str string) int {
+	i, err := strconv.Atoi(str)
+		if err != nil {
+			log.Fatal(err)
+		}
+		return i;
+}
 
 
 //GetLines gets the lines from a file

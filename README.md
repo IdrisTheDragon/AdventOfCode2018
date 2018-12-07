@@ -1,7 +1,7 @@
 # Advent of Code 2018
 
-My Golang solutions for the advent of code 2018. 
-I am learning go as I go. 
+My Golang solutions for the advent of code 2018.
+I am learning go as I go.
 So it's not perfect by any means.
 
 https://adventofcode.com/2018
