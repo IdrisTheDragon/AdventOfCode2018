@@ -13,28 +13,25 @@ func main() {
 	sum := 0
 	var sums []int
 
+	file, err := os.Open("day1_input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
 	for {
-		file, err := os.Open("../myInput.txt")
-		if err != nil {
-			log.Fatal(err)
-		}
-		defer file.Close()
+		// jump to beggining of the file
+		file.Seek(0, 0)
 		scanner := bufio.NewScanner(file)
 		for scanner.Scan() {
 			sums = append(sums, sum)
 
 			line := scanner.Text()
-			i, err := strconv.Atoi(line[1:])
+			i, err := strconv.Atoi(line)
 			if err != nil {
 				log.Fatal(err)
 			}
-			if line[0] == '+' {
-				sum = sum + i
-			} else if line[0] == '-' {
-				sum = sum - i
-			} else {
-				fmt.Println("error")
-			}
+			sum += i
 			//fmt.Println(sums)
 			for _, v := range sums {
 				if v == sum {
