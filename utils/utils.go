@@ -17,6 +17,15 @@ func Str2Int(str string) int {
 		return i;
 }
 
+//gets the sum of all values in a slice of ints
+func GetSum(list []int) int {
+	sum := 0
+	for _,v := range list {
+		sum = sum + v
+	}
+	return sum
+}
+
 
 //GetLines gets the lines from a file
 func GetLines(fileName string) []string {
