@@ -21,17 +21,12 @@ func main() {
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		i, err := strconv.Atoi(line[1:])
+		i, err := strconv.Atoi(line)
 		if err != nil {
 			log.Fatal(err)
 		}
-		if line[0] == '+' {
-			sum = sum + i
-		} else if line[0] == '-' {
-			sum = sum - i
-		} else {
-			fmt.Println("error")
-		}
+		// if i is negative, it is subtracted from sum
+		sum = sum + i
 	}
 	fmt.Println(sum)
 
