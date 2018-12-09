@@ -64,3 +64,15 @@ func RegSplit(text string, delimeter string) []string {
 	result[len(indexes)] = text[laststart:len(text)]
 	return result
 }
+
+
+//gets the max value of a slice of ints
+func Max(x []int) int {
+	max := 0
+	for _, v := range x {
+		if v > max {
+			max = v
+		}
+	}
+	return max
+}
