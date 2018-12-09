@@ -13,7 +13,8 @@ func main() {
 	sum := 0
 	var sums []int
 
-	file, err := os.Open("day1_input.txt")
+	//Thank Jassler for the improvement :)
+	file, err := os.Open("../myInput.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

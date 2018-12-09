@@ -21,10 +21,12 @@ func main() {
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		i, err := strconv.Atoi(line[1:])
+		i, err := strconv.Atoi(line)
 		if err != nil {
 			log.Fatal(err)
 		}
+		sum = sum + i
+		/* thanks jassler for pointing out atom takes sign into account :)
 		if line[0] == '+' {
 			sum = sum + i
 		} else if line[0] == '-' {
@@ -32,6 +34,7 @@ func main() {
 		} else {
 			fmt.Println("error")
 		}
+		*/
 	}
 	fmt.Println(sum)
 
