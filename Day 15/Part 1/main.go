@@ -17,8 +17,8 @@ const STARTING_HITPOINTS int = 200
 const ATTACK int = 3
 
 func main() {
-	//lines := utils.GetLines("../myInput.txt")
-	lines := utils.GetLines("../test1.txt")
+	lines := utils.GetLines("../myInput.txt")
+	//lines := utils.GetLines("../test1.txt")
 
 	cave := World{}
 	units := make([]*Unit, 0)
@@ -57,14 +57,14 @@ func main() {
 		targetsAvailable = false
 		round++
 
-		for _,unit := range units {
-			unitPrinter(unit)
-		}
-		fmt.Println()
+		//for _,unit := range units {
+		//	unitPrinter(unit)
+		//}
+		//fmt.Println()
 		sort.Sort(Units(units))
-		for _,unit := range units {
-			unitPrinter(unit)
-		}
+		//for _,unit := range units {
+		//	unitPrinter(unit)
+		//}
 		
 		for i := 0; i < len(units); i++ {
 			currentUnit := units[i]
@@ -86,9 +86,9 @@ func main() {
 		c.Run()
 		fmt.Println("Round:",round)
 		mapPrinter(cave)
-		for _,unit := range units {
-			unitPrinter(unit)
-		}
+		//for _,unit := range units {
+		//	unitPrinter(unit)
+		//}
 		fmt.Println()
 		
 	}
