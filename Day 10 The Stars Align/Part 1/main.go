@@ -7,6 +7,7 @@ import (
 
 func main() {
 	lines := utils.GetLines("../myInput.txt")
+	//lines := utils.GetLines("../bigInput.txt")
 	head := &Star{}
 	tail := head
 
@@ -59,7 +60,7 @@ func main() {
 	fmt.Println(smallestT)
 
 
-	 t := 10641
+	 t := smallestT
 
 	 	maxX := 0
 		maxY := 0
@@ -91,8 +92,8 @@ func main() {
 			mapper[temp.y][temp.x] = true
 		}
 
-		for i :=  100;i < len(mapper); i++ {
-			for j := 140 ;j < len(mapper[0]); j++ {
+		for i :=  0;i < len(mapper); i++ {
+			for j := 0;j < len(mapper[0]); j++ {
 				if mapper[i][j] {
 					fmt.Print("#")
 				} else {
